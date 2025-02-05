@@ -25,12 +25,9 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 @Service
 @Slf4j
 @Transactional(rollbackOn = Exception.class)
+@RequiredArgsConstructor
 public class ContactService {
     private final ContactRepo contactRepo;
-
-    public ContactService(ContactRepo contactRepo) {
-        this.contactRepo = contactRepo;
-    }
 
     public Page<Contact> getAllContacts(int page, int size){
         return contactRepo.findAll(PageRequest.of(page, size, Sort.by("name")));
